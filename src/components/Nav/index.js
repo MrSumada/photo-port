@@ -24,12 +24,12 @@ function Nav() {
     return(
         <header className="my-5">
             <h2>
-                <a href="/"><span role="img" aria-label="camera"> 📸</span> Oh Snap!</a>
+                <a href="/" data-testid="link"><span role="img" aria-label="camera"> 📸</span> Oh Snap!</a>
             </h2>
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a href="#about">About Me</a>
+                        <a href="#about" data-testid="about">About Me</a>
                     </li>
                     <li className="mx-1">
                         <a href="#gallery">gallery</a>
