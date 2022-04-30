@@ -4,15 +4,17 @@ import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Nav(props) {
 
-    const handleClick = (item) => {
-        console.log(item);
-        return item;
-    };
+    // const handleClick = (item) => {
+    //     console.log(item);
+    //     return item;
+    // };
 
     const {
         categories = [],
         setCurrentCategory,
-        currentCategory
+        currentCategory,
+        contactSelected,
+        setContactSelected
     } = props;
 
     useEffect(() => {
@@ -32,20 +34,21 @@ function Nav(props) {
             <nav>
                 <ul className="flex-row">
                     <li className="mx-2">
-                        <a href="#about" data-testid="about" onClick={() => handleClick("About")}>About Me</a>
+                        <a href="#about" data-testid="about" onClick={() => setContactSelected(false)}>About Me</a>
                     </li>
-                    <li className="mx-1">
-                        <span onClick={() => handleClick('Contact')}>Contact
+                    <li className={`mx-2 ${contactSelected && 'navActive'}`}>
+                        <span onClick={() => setContactSelected(true)}>Contact
                         </span>
                     </li>
                     {categories.map((category) => (
                         // If currentCategory.name === category.name, THEN set class as navActive
                         <li className={`mx-1 ${
-                            currentCategory.name === category.name && 'navActive'
+                            currentCategory.name === category.name && !contactSelected && 'navActive'
                         }`} key={category.name}>
                             <span 
                             onClick={() => {
-                                setCurrentCategory(category)
+                                setCurrentCategory(category);
+                                setContactSelected(false);
                             }}
                         >
                             {capitalizeFirstLetter(category.name)}
